@@ -1,5 +1,6 @@
 import random
 import time
+import os
 
 # mg this is not json, although i guess the syntax is the same BUT IT IS STILL VALID PYTHON!
 # also tbh i used google just to see what beats what in this version of the game, nothing else
@@ -58,6 +59,8 @@ def pick_option(many: int):
         return None
 
 def main():
+    os.system('cls' if os.name == 'nt' else 'clear')
+    
     amount = None
     while amount == None:
         amount = choose_amount()
@@ -68,7 +71,7 @@ def main():
     while your_pick == None:
         your_pick = pick_option(amount)
     
-    print()
+    # os.system('cls' if os.name == 'nt' else 'clear')
     
     time.sleep(0.2)
     for i in range(amount):
@@ -80,18 +83,15 @@ def main():
     print(f"You chose {definitions[your_pick - 1]["name"]}.")
     print(f"AI chose {definitions[robot_pick]["name"]}.")
 
-    winner = None
+    winner = "You win!" # fallback thingy, used to be "It's a draw..." but python hates me or something
 
-    for i in definitions[your_pick - 1]["beats"]:
-        if i == definitions[robot_pick]["name"]:
-            winner = "You win!"
+    # for i in definitions[your_pick - 1]["beats"]:
+    #     if i == definitions[robot_pick]["name"]:
+    #         winner = "You win!"
     
-    for i in definitions[robot_pick - 1]["beats"]:
-        if i == definitions[your_pick]["name"]:
+    for i in definitions[robot_pick]["beats"]:
+        if i == definitions[your_pick - 1]["name"]:
             winner = "AI wins!"
-    
-    if winner == None:
-        winner = "It was a draw..."
 
     print(f"\n{winner}")
 
