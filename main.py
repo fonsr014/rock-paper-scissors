@@ -92,6 +92,9 @@ def main():
     for i in definitions[robot_pick]["beats"]:
         if i == definitions[your_pick - 1]["name"]:
             winner = "AI wins!"
+    
+    if definitions[your_pick - 1]["name"] == definitions[robot_pick]["name"]:
+        winner = "It was a draw..."
 
     print(f"\n{winner}")
 
